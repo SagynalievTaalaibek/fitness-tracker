@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema<UserFields, UserModel, UserMethods>({
     type: String,
     enum: ['male', 'female'],
   },
-  profile_picture: {
+  avatar: {
     type: String,
   },
   height: {

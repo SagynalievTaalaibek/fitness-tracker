@@ -5,7 +5,7 @@ export interface UserFields {
   token: string;
   role: string;
   dateOfBirth?: string;
-  profile_picture?: string;
+  avatar?: string;
   height?: string;
   width?: string;
   gender?: 'male' | 'female';
