@@ -1,6 +1,6 @@
 
 <svg fill="#EA580C" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-	 width="40px" height="40px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
+	 width="100px" height="100px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
 <g>
 	<path d="M150,7.5C71.421,7.5,7.5,71.434,7.5,150S71.421,292.5,150,292.5S292.5,228.566,292.5,150S228.579,7.5,150,7.5z
 		 M150,278.924c-71.092,0-128.924-57.841-128.924-128.924S78.908,21.076,150,21.076S278.924,78.917,278.924,150
