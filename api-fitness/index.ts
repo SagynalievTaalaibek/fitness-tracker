@@ -3,12 +3,15 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import config from './config';
+import userRouter from './routes/userRouter';
 
 const app = express();
 
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
+
+app.use('/user', userRouter);
 
 const run = async () => {
   await mongoose.connect(config.mongoose.db);
