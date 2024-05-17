@@ -9,6 +9,17 @@ const theme = createTheme({
       },
     },
   },
+  palette: {
+    primary: {
+      main: '#EA580C',
+    },
+    secondary: {
+      main: '#f3f3f3',
+    },
+    background: {
+      paper: '#f3f3f3',
+    },
+  },
   typography: {
     fontFamily: `"Montserrat", "Helvetica", "Arial", sans-serif`,
     fontSize: 14,
