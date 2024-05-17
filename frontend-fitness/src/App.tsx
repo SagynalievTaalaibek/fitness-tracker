@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Register from './features/user/Register.tsx';
 import Login from './features/user/Login.tsx';
 import ProtectedRoute from './componets/ProtectedRoute/ProtectedRoute.tsx';
+import CompleteProfile from './features/user/CompleteProfile.tsx';
 
 const App = () => {
   const user = useAppSelector(selectUser);
@@ -14,6 +15,7 @@ const App = () => {
       <BaseLayout>
         <Routes>
           <Route path="/register" element={<Register />} />
+          <Route path="/register/profile" element={<CompleteProfile />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/"

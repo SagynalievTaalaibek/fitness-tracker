@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema<UserFields, UserModel, UserMethods>({
   height: {
     type: String,
   },
-  width: {
+  weight: {
     type: String,
   },
   dateOfBirth: {

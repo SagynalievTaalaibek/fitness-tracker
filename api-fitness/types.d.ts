@@ -7,7 +7,7 @@ export interface UserFields {
   dateOfBirth?: string;
   avatar?: string;
   height?: string;
-  width?: string;
+  weight?: string;
   gender?: 'male' | 'female';
 }
 

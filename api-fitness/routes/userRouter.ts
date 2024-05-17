@@ -94,7 +94,7 @@ userRouter.patch(
           dateOfBirth: req.body.dateOfBirth,
           avatar: req.file && req.file.filename,
           height: req.body.height,
-          width: req.body.width,
+          weight: req.body.weight,
           gender: req.body.gender,
         },
       );

@@ -9,8 +9,16 @@ export interface IUser {
   dateOfBirth?: string;
   avatar?: string;
   height?: string;
-  width?: string;
+  weight?: string;
   gender?: 'male' | 'female';
+}
+
+export interface UserCompleteProfile {
+  dateOfBirth: string;
+  avatar: File | null;
+  height: string;
+  weight: string;
+  gender: string;
 }
 
 export interface RegisterMutation {

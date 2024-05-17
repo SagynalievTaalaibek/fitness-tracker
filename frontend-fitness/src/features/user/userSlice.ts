@@ -9,6 +9,7 @@ interface UserState {
   loginLoading: boolean;
   registerError: ValidationError | null;
   loginError: GlobalError | null;
+  editLoading: boolean;
 }
 
 const initialState: UserState = {
@@ -17,6 +18,7 @@ const initialState: UserState = {
   loginLoading: false,
   registerError: null,
   loginError: null,
+  editLoading: false,
 };
 
 const userSlice = createSlice({
@@ -70,3 +72,5 @@ export const selectLoginLoading = (state: RootState) => state.user.loginLoading;
 export const selectRegisterError = (state: RootState) =>
   state.user.registerError;
 export const selectLoginError = (state: RootState) => state.user.loginError;
+export const selectProfileEditLoading = (state: RootState) =>
+  state.user.editLoading;

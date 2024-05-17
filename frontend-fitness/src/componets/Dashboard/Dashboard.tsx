@@ -140,7 +140,7 @@ const Dashboard: React.FC<React.PropsWithChildren> = ({ children }) => {
                 component="div"
                 sx={{ color: 'black' }}
               >
-                Welcome Back!
+                Welcome Back! {user?.fullName}
               </Typography>
             </Toolbar>
           </AppBar>
