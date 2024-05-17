@@ -52,7 +52,7 @@ const CompleteProfile = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xl">
+    <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
@@ -61,7 +61,7 @@ const CompleteProfile = () => {
           alignItems: 'center',
         }}
       >
-        <Typography component="h2" variant="h4" sx={{ fontWeight: 'bold' }}>
+        <Typography component="h2" variant="h5" sx={{ fontWeight: 'bold' }}>
           Let’s complete your profile
         </Typography>
         <Typography component="p" variant="h6">
