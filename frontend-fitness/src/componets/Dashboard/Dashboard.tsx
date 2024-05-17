@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import { Link as NavLink } from 'react-router-dom';
 import { CSSObject, styled, Theme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -13,9 +14,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import logo from '../../images/fitness.svg';
+import { useAppSelector } from '../../app/store/hooks.ts';
+import { selectUser } from '../../features/user/userSlice.ts';
+import {
+  dashboardAdminRoutes,
+  dashboardRouters,
+  dashboardUserRoutes,
+} from '../../app/constants/page.ts';
 
 const drawerWidth = 200;
 
@@ -99,126 +105,188 @@ const Dashboard: React.FC<React.PropsWithChildren> = ({ children }) => {
     setOpen(false);
   };
 
+  const user = useAppSelector(selectUser);
+
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar
-        position="fixed"
-        open={open}
-        sx={{ backgroundColor: theme.palette.background.paper }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              padding: '0 0 0 4px',
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
+      {user ? (
+        <>
+          <AppBar
+            position="fixed"
+            open={open}
+            sx={{ backgroundColor: theme.palette.background.paper }}
           >
-            <img
-              src={logo}
-              alt="Logo"
-              style={{ height: '36px', width: '36px' }}
-            />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ color: 'black' }}
-          >
-            Welcome Back!
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          {theme.direction !== 'rtl' && (
-            <>
-              <Typography
-                variant={'h6'}
-                component={'div'}
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
                 sx={{
-                  fontWeight: 'bold',
-                  marginRight: 2,
-                  display: 'flex',
-                  alignItems: 'center',
+                  padding: '0 0 0 4px',
+                  marginRight: 5,
+                  ...(open && { display: 'none' }),
                 }}
               >
                 <img
                   src={logo}
                   alt="Logo"
-                  style={{ height: '36px', width: '36px', marginRight: '5px' }}
+                  style={{ height: '36px', width: '36px' }}
                 />
-                <span
-                  style={{
-                    display: 'block',
-                    color: theme.palette.primary.main,
-                  }}
-                >
-                  Fitness
-                </span>
-              </Typography>
-              <IconButton onClick={handleDrawerClose}>
-                <ChevronRightIcon />
               </IconButton>
-            </>
-          )}
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ color: 'black' }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
+                Welcome Back!
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer variant="permanent" open={open}>
+            <DrawerHeader>
+              {theme.direction !== 'rtl' && (
+                <>
+                  <Typography
+                    variant={'h6'}
+                    component={'div'}
+                    sx={{
+                      fontWeight: 'bold',
+                      marginRight: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <img
+                      src={logo}
+                      alt="Logo"
+                      style={{
+                        height: '36px',
+                        width: '36px',
+                        marginRight: '5px',
+                      }}
+                    />
+                    <span
+                      style={{
+                        display: 'block',
+                        color: theme.palette.primary.main,
+                      }}
+                    >
+                      Fitness
+                    </span>
+                  </Typography>
+                  <IconButton onClick={handleDrawerClose}>
+                    <ChevronRightIcon />
+                  </IconButton>
+                </>
+              )}
+            </DrawerHeader>
+            <Divider />
+            <List>
+              {dashboardRouters.map((item) => (
+                <ListItem
+                  key={item.id}
+                  disablePadding
+                  sx={{ display: 'block' }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                    component={NavLink}
+                    to={`/${item.url}`}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {React.createElement(item.icon)}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.title}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+            <List>
+              {dashboardUserRoutes.map((item) => (
+                <ListItem
+                  key={item.id}
+                  disablePadding
+                  sx={{ display: 'block' }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                    component={NavLink}
+                    to={`/${item.url}`}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {React.createElement(item.icon)}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.title}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+              {user.role === 'user' &&
+                dashboardAdminRoutes.map((item) => (
+                  <ListItem
+                    key={item.id}
+                    disablePadding
+                    sx={{ display: 'block' }}
+                  >
+                    <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                      }}
+                      component={NavLink}
+                      to={`/${item.url}`}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {React.createElement(item.icon)}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={item.title}
+                        sx={{ opacity: open ? 1 : 0 }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+            </List>
+          </Drawer>
+        </>
+      ) : (
+        ''
+      )}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}
